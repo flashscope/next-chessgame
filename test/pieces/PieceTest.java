@@ -39,4 +39,12 @@ public class PieceTest extends TestCase {
 		assertEquals(14, rook1.getPossibleMoves().size());
 		System.out.println("Rook Possible moves Test : " + rook1.getPossibleMoves().toString());
 	}
+	
+	public void testBishopGetPossibleMoves() throws Exception {
+		Position source = new Position("b3");
+		Bishop bishop1 = new Bishop(Color.WHITE, source);
+		assertEquals(9, bishop1.getPossibleMoves().size());
+		System.out.println("Bishop Possible moves Test : " + bishop1.getPossibleMoves().toString());
+	}
+	
 }

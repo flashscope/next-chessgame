@@ -119,4 +119,5 @@ public abstract class Piece {
 		return "Piece [color=" + color + ", type=" + type + ", position="
 				+ position + "]";
 	}
+	
 }

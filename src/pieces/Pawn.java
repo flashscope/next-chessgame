@@ -16,8 +16,14 @@ public class Pawn extends Piece {
 		
 		if (super.getSuperPieceColor() == Color.BLACK) {
 			list.addAll(position.findsPositionOneMove(Direction.SOUTH));
+			if (position.getY() == 6) {
+				list.addAll(list.get(0).findsPositionOneMove(Direction.SOUTH));
+			}
 		} else {
 			list.addAll(position.findsPositionOneMove(Direction.NORTH));
+			if (position.getY() == 1) {
+				list.addAll(list.get(0).findsPositionOneMove(Direction.NORTH));
+			}
 		}
 		
 		return list;

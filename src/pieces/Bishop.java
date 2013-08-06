@@ -13,10 +13,7 @@ public class Bishop extends Piece {
 	List<Position> getPossibleMoves() {
 		List<Position> list = new ArrayList<Position>();
 		Position position = super.getSuperPiecePosition();
-		list.addAll(position.findsPosition(Direction.NORTHEAST));
-		list.addAll(position.findsPosition(Direction.NORTHWEST));
-		list.addAll(position.findsPosition(Direction.SOUTHEAST));
-		list.addAll(position.findsPosition(Direction.SOUTHWEST));
+		list.addAll(position.findsPosition4Diagonal());
 		return list;
 	}
 }

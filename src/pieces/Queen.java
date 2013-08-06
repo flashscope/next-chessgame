@@ -14,14 +14,8 @@ public class Queen extends Piece {
 		List<Position> list = new ArrayList<Position>();
 		Position position = super.getSuperPiecePosition();
 		
-		list.addAll(position.findsPosition(Direction.NORTH));
-		list.addAll(position.findsPosition(Direction.SOUTH));
-		list.addAll(position.findsPosition(Direction.WEST));
-		list.addAll(position.findsPosition(Direction.EAST));
-		list.addAll(position.findsPosition(Direction.NORTHEAST));
-		list.addAll(position.findsPosition(Direction.NORTHWEST));
-		list.addAll(position.findsPosition(Direction.SOUTHEAST));
-		list.addAll(position.findsPosition(Direction.SOUTHWEST));
+		list.addAll(position.findsPosition4Linear());
+		list.addAll(position.findsPosition4Diagonal());
 		
 		return list;
 	}

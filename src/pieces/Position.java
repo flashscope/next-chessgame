@@ -50,6 +50,24 @@ public class Position {
 		return positions;
 	}
 	
+	List<Position> findsPosition4Linear() {
+		ArrayList<Position> positions = new ArrayList<Position>();
+		positions.addAll(findsPosition(Direction.NORTH));
+		positions.addAll(findsPosition(Direction.SOUTH));
+		positions.addAll(findsPosition(Direction.WEST));
+		positions.addAll(findsPosition(Direction.EAST));
+		return positions;
+	}
+	
+	List<Position> findsPosition4Diagonal() {
+		ArrayList<Position> positions = new ArrayList<Position>();
+		positions.addAll(findsPosition(Direction.NORTHEAST));
+		positions.addAll(findsPosition(Direction.NORTHWEST));
+		positions.addAll(findsPosition(Direction.SOUTHEAST));
+		positions.addAll(findsPosition(Direction.SOUTHWEST));
+		return positions;
+	}
+	
 	boolean isValid() {
 		if ( y < 0 || y >= Board.ROW_SIZE) {
 			return false;

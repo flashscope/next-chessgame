@@ -78,6 +78,10 @@ public abstract class Piece {
 	
 	abstract List<Position> getPossibleMoves();
 	
+	protected Position getSuperPiecePosition(){
+		return position;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

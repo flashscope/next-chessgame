@@ -1,5 +1,6 @@
 package pieces;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Rook extends Piece {
@@ -9,6 +10,12 @@ public class Rook extends Piece {
 
 	@Override
 	List<Position> getPossibleMoves() {
-		return null;
+		List<Position> list = new ArrayList<Position>();
+		Position position = super.getSuperPiecePosition();
+		list.addAll(position.findsPosition(Direction.NORTH));
+		list.addAll(position.findsPosition(Direction.SOUTH));
+		list.addAll(position.findsPosition(Direction.WEST));
+		list.addAll(position.findsPosition(Direction.EAST));
+		return list;
 	}
 }

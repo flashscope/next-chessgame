@@ -82,6 +82,10 @@ public abstract class Piece {
 		return position;
 	}
 	
+	protected Color getSuperPieceColor(){
+		return color;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

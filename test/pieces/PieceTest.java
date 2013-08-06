@@ -61,4 +61,16 @@ public class PieceTest extends TestCase {
 		System.out.println("King Possible moves Test : " + king1.getPossibleMoves().toString());
 	}
 	
+	public void testPawnGetPossibleMoves() throws Exception {
+		Position source = new Position("b3");
+		Pawn pawn1 = new Pawn(Color.WHITE, source);
+		assertEquals(1, pawn1.getPossibleMoves().size());
+		System.out.println("White Pawn Possible moves Test : " + pawn1.getPossibleMoves().toString());
+		
+		Position source2 = new Position("c5");
+		Pawn pawn2 = new Pawn(Color.BLACK, source2);
+		assertEquals(1, pawn2.getPossibleMoves().size());
+		System.out.println("Black Pawn Possible moves Test : " + pawn2.getPossibleMoves().toString());
+	}
+	
 }

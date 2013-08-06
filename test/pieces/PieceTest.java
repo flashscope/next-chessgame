@@ -47,4 +47,11 @@ public class PieceTest extends TestCase {
 		System.out.println("Bishop Possible moves Test : " + bishop1.getPossibleMoves().toString());
 	}
 	
+	public void testQueenGetPossibleMoves() throws Exception {
+		Position source = new Position("b3");
+		Queen queen1 = new Queen(Color.WHITE, source);
+		assertEquals(23, queen1.getPossibleMoves().size());
+		System.out.println("Queen Possible moves Test : " + queen1.getPossibleMoves().toString());
+	}
+	
 }

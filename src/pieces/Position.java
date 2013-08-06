@@ -49,6 +49,16 @@ public class Position {
 		}
 		return positions;
 	}
+
+	List<Position> findsPositionOneMove(Direction direction) {
+		ArrayList<Position> positions = new ArrayList<Position>();
+		Position currentPosition = move(direction);
+		//currentPosition = currentPosition.move(direction);
+		if(currentPosition.isValid()) {
+			positions.add(currentPosition);
+		}
+		return positions;
+	}
 	
 	List<Position> findsPosition4Linear() {
 		ArrayList<Position> positions = new ArrayList<Position>();

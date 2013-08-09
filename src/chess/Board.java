@@ -69,7 +69,7 @@ public class Board {
 			throw new EmptyPositionException("같은 편이 위치한 자리입니다.");
 		}
 		Piece sourcePiece = targetPiece.leave();
-		//test pushing
+		//test pushing error with non-fast-forward update
 		Rank sourceRank = ranks.get(source.getY());
 		sourceRank.move(sourcePiece, source);
 		

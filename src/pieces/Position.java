@@ -3,6 +3,8 @@ package pieces;
 import java.util.ArrayList;
 import java.util.List;
 
+import util.exceptions.IllegalPositionException;
+import util.exceptions.NullPositionException;
 import chess.Board;
 
 public class Position {
@@ -11,8 +13,15 @@ public class Position {
 	private int x;
 	private int y;
 
-	public Position(String position) {
-		// 에러 상태에 대한 처리 필요함.
+	public Position(String position){
+		if (position == null) {
+			throw new NullPositionException("NULL값이 들어왔습니다.");
+		}
+		
+		if (position.length() != 2) {
+			throw new IllegalPositionException("위치 값은 2자리로 입력해야 합니다.(예:b6)");
+		}
+		
 		this.x = generateColumnIndex(position.charAt(0));
 		this.y = Integer.parseInt(position.substring(1)) - 1;
 	}
@@ -53,7 +62,7 @@ public class Position {
 	List<Position> findsPositionOneMove(Direction direction) {
 		ArrayList<Position> positions = new ArrayList<Position>();
 		Position currentPosition = move(direction);
-		//currentPosition = currentPosition.move(direction);
+		
 		if(currentPosition.isValid()) {
 			positions.add(currentPosition);
 		}
@@ -101,17 +110,22 @@ public class Position {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if (this == obj) {
 			return true;
-		if (obj == null)
+		}
+		if (obj == null) {
 			return false;
-		if (getClass() != obj.getClass())
+		}
+		if (getClass() != obj.getClass()) {
 			return false;
+		}
 		Position other = (Position) obj;
-		if (x != other.x)
+		if (x != other.x) {
 			return false;
-		if (y != other.y)
+		}
+		if (y != other.y) {
 			return false;
+		}
 		return true;
 	}
 

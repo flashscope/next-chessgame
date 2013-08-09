@@ -5,6 +5,7 @@ import java.util.List;
 
 import pieces.Piece;
 import pieces.Position;
+import util.exceptions.EmptyPositionException;
 
 public class Board {
 	public static final String NEW_LINE = System.getProperty("line.separator");
@@ -58,6 +59,9 @@ public class Board {
 
 	void movePiece(Position source, Position target) {
 		Piece targetPiece = findPiece(source);
+		if (targetPiece.getSymbol()=='.'){
+			throw new EmptyPositionException("빈칸을 선택하였습니다.");
+		}
 		Piece sourcePiece = targetPiece.leave();
 		
 		Rank sourceRank = ranks.get(source.getY());

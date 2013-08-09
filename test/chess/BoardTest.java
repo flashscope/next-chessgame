@@ -6,6 +6,7 @@ import pieces.Pawn;
 import pieces.Piece;
 import pieces.Piece.Color;
 import pieces.Position;
+import util.exceptions.EmptyPositionException;
 
 public class BoardTest extends TestCase {
 	private Board board;
@@ -63,5 +64,19 @@ public class BoardTest extends TestCase {
 		assertEquals(new Pawn(Color.WHITE, target), board.findPiece(target));
 		System.out.println(board.generateBoard());
 	}
+	
+	public void testSelectEmptyPlaceToMove() throws Exception {
+		board.initialize();
+		Position source = new Position("d5");
+		Position target = new Position("a3");
+		
+		try{
+			board.movePiece(source, target);
+			fail("만약 빈칸을 건드리지 '않으면' 이게 실행되겠지...");
+		}catch(EmptyPositionException e){
+			System.out.println("ERROR:"+e);
+		}
+	}
+	
 	
 }

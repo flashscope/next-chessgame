@@ -87,6 +87,21 @@ public class Position {
 		return positions;
 	}
 	
+	List<Position> findsPositionKnight() {
+		ArrayList<Position> positions = new ArrayList<Position>();
+		
+		positions.addAll(findsPositionOneMove(Direction.NORTH).get(0).findsPositionOneMove(Direction.NORTHEAST));
+		positions.addAll(findsPositionOneMove(Direction.NORTH).get(0).findsPositionOneMove(Direction.NORTHWEST));
+		positions.addAll(findsPositionOneMove(Direction.SOUTH).get(0).findsPositionOneMove(Direction.SOUTHEAST));
+		positions.addAll(findsPositionOneMove(Direction.SOUTH).get(0).findsPositionOneMove(Direction.SOUTHWEST));
+		positions.addAll(findsPositionOneMove(Direction.WEST).get(0).findsPositionOneMove(Direction.NORTHWEST));
+		positions.addAll(findsPositionOneMove(Direction.WEST).get(0).findsPositionOneMove(Direction.SOUTHWEST));
+		positions.addAll(findsPositionOneMove(Direction.EAST).get(0).findsPositionOneMove(Direction.NORTHEAST));
+		positions.addAll(findsPositionOneMove(Direction.EAST).get(0).findsPositionOneMove(Direction.SOUTHEAST));
+		
+		return positions;
+	}
+	
 	boolean isValid() {
 		if ( y < 0 || y >= Board.ROW_SIZE) {
 			return false;

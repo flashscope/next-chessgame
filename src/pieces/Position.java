@@ -102,6 +102,13 @@ public class Position {
 		return positions;
 	}
 	
+	public boolean isValidPosition() {
+		if(this.isValid()){
+			return true;
+		}
+		return false;
+	}
+	
 	boolean isValid() {
 		if ( y < 0 || y >= Board.ROW_SIZE) {
 			return false;

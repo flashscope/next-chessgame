@@ -78,5 +78,20 @@ public class BoardTest extends TestCase {
 		}
 	}
 	
+	public void testMoveTargetValid() throws Exception {
+		board.initialize();
+		Position source = new Position("a2");
+		Position target = new Position("a9");
+		
+		try{
+			board.movePiece(source, target);
+			fail("만약 타겟이 잘못된 곳으로 이끌지 '않으면' 이게 실행되겠지...");
+		}catch(Exception e){
+			System.out.println("ERROR:"+e);
+		}
+		
+		System.out.println(board.generateBoard());
+	}
+	
 	
 }

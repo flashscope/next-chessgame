@@ -62,6 +62,9 @@ public class Board {
 		if (targetPiece.getSymbol()=='.'){
 			throw new EmptyPositionException("빈칸을 선택하였습니다.");
 		}
+		if (!target.isValidPosition()){
+			throw new EmptyPositionException("이동 불가능한 칸 입니다.");
+		}
 		Piece sourcePiece = targetPiece.leave();
 		
 		Rank sourceRank = ranks.get(source.getY());

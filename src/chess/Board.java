@@ -11,7 +11,7 @@ public class Board {
 	public static final int ROW_SIZE = 8;
 	public static final int COLUMN_SIZE = 8;
 	
-	List<Rank> ranks = new ArrayList<Rank>();
+	private List<Rank> ranks = new ArrayList<Rank>();
 	
 	Board() {
 	}

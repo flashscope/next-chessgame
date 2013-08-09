@@ -13,6 +13,15 @@ public class PositionTest extends TestCase {
 		assertEquals(1, position.getY());
 	}
 
+	public void testCreateWhenIllegalArgument() throws Exception {
+		try {
+			new Position("a");
+			fail("Position 인자가 형식에 맞지 않아 Exception이 발생해야 한다.");
+		} catch (Exception e) {
+			System.out.println("ERROR:" + e);
+		}
+	}
+
 	public void testMoveOneRoom() throws Exception {
 		int startX = 4;
 		int startY = 5;

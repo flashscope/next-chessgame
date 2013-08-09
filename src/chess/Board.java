@@ -65,6 +65,9 @@ public class Board {
 		if (!target.isValidPosition()){
 			throw new EmptyPositionException("이동 불가능한 칸 입니다.");
 		}
+		if (targetPiece.getColor() == findPiece(target).getColor()){
+			throw new EmptyPositionException("같은 편이 위치한 자리입니다.");
+		}
 		Piece sourcePiece = targetPiece.leave();
 		
 		Rank sourceRank = ranks.get(source.getY());

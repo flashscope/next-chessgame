@@ -68,6 +68,7 @@ public class Board {
 		if (targetPiece.getColor() == findPiece(target).getColor()){
 			throw new EmptyPositionException("같은 편이 위치한 자리입니다.");
 		}
+		//comment for git commit
 		Piece sourcePiece = targetPiece.leave();
 		//test pushing error with non-fast-forward update
 		Rank sourceRank = ranks.get(source.getY());

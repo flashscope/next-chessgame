@@ -6,6 +6,8 @@ import java.util.List;
 import pieces.Piece;
 import pieces.Position;
 import util.exceptions.EmptyPositionException;
+import util.exceptions.IllegalPositionException;
+import util.exceptions.SameColorPositionException;
 
 public class Board {
 	public static final String NEW_LINE = System.getProperty("line.separator");
@@ -59,15 +61,18 @@ public class Board {
 
 	void movePiece(Position source, Position target) {
 		Piece targetPiece = findPiece(source);
+		
 		if (targetPiece.getSymbol()=='.'){
 			throw new EmptyPositionException("빈칸을 선택하였습니다.");
 		}
 		if (!target.isValidPosition()){
-			throw new EmptyPositionException("이동 불가능한 칸 입니다.");
+			throw new IllegalPositionException("이동 불가능한 칸 입니다.");
 		}
 		if (targetPiece.getColor() == findPiece(target).getColor()){
-			throw new EmptyPositionException("같은 편이 위치한 자리입니다.");
+			throw new SameColorPositionException("같은 편이 위치한 자리입니다.");
 		}
+		
+
 		//comment for git commit
 		Piece sourcePiece = targetPiece.leave();
 		//test pushing error with non-fast-forward update

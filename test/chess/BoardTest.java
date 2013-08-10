@@ -68,7 +68,7 @@ public class BoardTest extends TestCase {
 	public void testSelectEmptyPlaceToMove() throws Exception {
 		board.initialize();
 		Position source = new Position("d5");
-		Position target = new Position("a3");
+		Position target = new Position("a2");
 		
 		try{
 			board.movePiece(source, target);
@@ -93,5 +93,20 @@ public class BoardTest extends TestCase {
 		System.out.println(board.generateBoard());
 	}
 	
+	
+	public void testMoveOurSide() throws Exception {
+		board.initialize();
+		Position source = new Position("a2");
+		Position target = new Position("b2");
+		
+		try{
+			board.movePiece(source, target);
+			fail("만약 타겟에 같은 팀이 있지 '않으면' 이게 실행되겠지...");
+		}catch(Exception e){
+			System.out.println("ERROR:"+e);
+		}
+		
+		System.out.println(board.generateBoard());
+	}
 	
 }

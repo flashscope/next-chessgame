@@ -5,6 +5,7 @@ import java.util.List;
 
 import pieces.Piece;
 import pieces.Position;
+import util.exceptions.CanNotMovePositionException;
 import util.exceptions.EmptyPositionException;
 import util.exceptions.IllegalPositionException;
 import util.exceptions.SameColorPositionException;
@@ -71,8 +72,10 @@ public class Board {
 		if (targetPiece.getColor() == findPiece(target).getColor()){
 			throw new SameColorPositionException("같은 편이 위치한 자리입니다.");
 		}
+		if (!targetPiece.isCanMove(target)){
+			throw new CanNotMovePositionException("그 말이 이동 할 수 없는 곳입니다.");
+		}
 		
-
 		//comment for git commit
 		Piece sourcePiece = targetPiece.leave();
 		//test pushing error with non-fast-forward update

@@ -109,4 +109,19 @@ public class BoardTest extends TestCase {
 		System.out.println(board.generateBoard());
 	}
 	
+	
+	public void testCanNotMovePosition() throws Exception {
+		board.initialize();
+		Position source = new Position("a2");
+		Position target = new Position("b5");
+		
+		try{
+			board.movePiece(source, target);
+			fail("그 말이 갈 수 있는 곳이지 '않으면' 이게 실행되겠지...");
+		}catch(Exception e){
+			System.out.println("ERROR:"+e);
+		}
+		
+		System.out.println(board.generateBoard());
+	}
 }

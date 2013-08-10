@@ -83,6 +83,14 @@ public abstract class Piece {
 	
 	abstract List<Position> getPossibleMoves();
 	
+	public boolean isCanMove (Position pos) {
+		if(getPossibleMoves().contains(pos))
+		{
+			return true;
+		}
+		return false;
+	}
+	
 	protected Position getSuperPiecePosition(){
 		return position;
 	}

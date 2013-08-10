@@ -18,7 +18,8 @@ public class EmptyPositionException extends RuntimeException {
      * @param   s   the detail message.
      */
     public EmptyPositionException(String s) {
-        super(s);
+    	super(s);
     }
+    
     
 }

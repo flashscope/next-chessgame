@@ -3,7 +3,7 @@ package chess;
 import java.util.ArrayList;
 import java.util.List;
 
-import pieces.Piece;
+import pieces.PieceOperations;
 import pieces.Position;
 import util.exceptions.CanNotMovePositionException;
 import util.exceptions.EmptyPositionException;
@@ -11,11 +11,18 @@ import util.exceptions.IllegalPositionException;
 import util.exceptions.SameColorPositionException;
 
 public class Board {
+	
+	
+	private static final boolean SYSOUT_ON = true;
+	
+	
+	
 	public static final String NEW_LINE = System.getProperty("line.separator");
 	public static final int ROW_SIZE = 8;
 	public static final int COLUMN_SIZE = 8;
 	
-	private List<Rank> ranks = new ArrayList<Rank>();
+	private static List<Rank> ranks = new ArrayList<Rank>();
+	
 	
 	Board() {
 	}
@@ -46,12 +53,12 @@ public class Board {
 		}
 	}
 
-	Piece findPiece(String xy) {
+	PieceOperations findPiece(String xy) {
 		Position position = new Position(xy);
 		return findPiece(position);
 	}
 
-	Piece findPiece(Position position) {
+	PieceOperations findPiece(Position position) {
 		Rank rank = ranks.get(position.getY());
 		return rank.findPiece(position);
 	}
@@ -61,7 +68,7 @@ public class Board {
 	}
 
 	void movePiece(Position source, Position target) {
-		Piece targetPiece = findPiece(source);
+		PieceOperations targetPiece = findPiece(source);
 		
 		if (targetPiece.getSymbol()=='.'){
 			throw new EmptyPositionException("빈칸을 선택하였습니다.");
@@ -76,9 +83,8 @@ public class Board {
 			throw new CanNotMovePositionException("그 말이 이동 할 수 없는 곳입니다.");
 		}
 		
-		//comment for git commit
-		Piece sourcePiece = targetPiece.leave();
-		//test pushing error with non-fast-forward update
+		PieceOperations sourcePiece = targetPiece.leave();
+		
 		Rank sourceRank = ranks.get(source.getY());
 		sourceRank.move(sourcePiece, source);
 		
@@ -86,18 +92,15 @@ public class Board {
 		targetRank.move(targetPiece, target);
 	}
 	
-	String generateRank(int rankIndex) {
-		Rank rank = ranks.get(rankIndex);
-		StringBuilder sb = new StringBuilder();
-		sb.append(rank.generate());
-		return sb.toString();
+	public static List<Rank> getRanks(){
+		return ranks;
 	}
-
-	String generateBoard() {
-		StringBuilder sb = new StringBuilder();
-		for (int i = ROW_SIZE; i > 0; i--) {
-			sb.append(generateRank(i-1) + NEW_LINE);
-		}
-		return sb.toString();
+	
+	public BoardGenerator switchGenerator(){
+		return null;
+		//if(SYSOUT_ON){
+		//	return new BoardGenerateSysOut();
+		//}
+		//return new BoardGenerateHtml();
 	}
 }

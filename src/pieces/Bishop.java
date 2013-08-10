@@ -5,8 +5,8 @@ import java.util.List;
 
 
 public class Bishop extends Piece {
-	public Bishop(Color color, Position position) {
-		super(color, Type.BISHOP, position);
+	public Bishop(PieceColor color, Position position) {
+		super(color, PieceType.BISHOP, position);
 	}
 
 	@Override

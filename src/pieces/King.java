@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class King extends Piece {
-	public King(Color color, Position position) {
-		super(color, Type.KING, position);
+	public King(PieceColor color, Position position) {
+		super(color, PieceType.KING, position);
 	}
 
 	@Override

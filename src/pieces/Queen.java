@@ -5,8 +5,8 @@ import java.util.List;
 
 
 public class Queen extends Piece {
-	public Queen(Color color, Position position) {
-		super(color, Type.QUEEN, position);
+	public Queen(PieceColor color, Position position) {
+		super(color, PieceType.QUEEN, position);
 	}
 
 	@Override

@@ -3,8 +3,8 @@ package chess;
 import junit.framework.TestCase;
 import pieces.Empty;
 import pieces.Pawn;
-import pieces.Piece;
-import pieces.Piece.Color;
+import pieces.PieceColor;
+import pieces.PieceOperations;
 import pieces.Position;
 import util.exceptions.EmptyPositionException;
 
@@ -18,8 +18,8 @@ public class BoardTest extends TestCase {
 	
 	public void testCreate() throws Exception {
 		board.initialize();
-		assertEquals(RankTest.WHITE_PAWN_RANK, board.generateRank(1));
-		assertEquals(RankTest.BLACK_PAWN_RANK, board.generateRank(6));
+		assertEquals(RankTest.WHITE_PAWN_RANK, board.switchGenerator().generateRank(1));
+		assertEquals(RankTest.BLACK_PAWN_RANK, board.switchGenerator().generateRank(6));
 	}
 	
 	public void testPrint() throws Exception {
@@ -33,8 +33,8 @@ public class BoardTest extends TestCase {
 			createEmptyRank() +
 			RankTest.WHITE_PAWN_RANK + Board.NEW_LINE +
 			RankTest.WHITE_EXCEPT_PAWN_RANK + Board.NEW_LINE;
-		assertEquals(expected, board.generateBoard());
-		System.out.println(board.generateBoard());
+		assertEquals(expected, board.switchGenerator().generateBoard());
+		System.out.println(board.switchGenerator().generateBoard());
 	}
 	
 	private String createEmptyRank() {
@@ -49,20 +49,20 @@ public class BoardTest extends TestCase {
 	
 	public void testInitializeEmpty() throws Exception {
 		board.initializeEmpty();
-		System.out.println(board.generateBoard());
+		System.out.println(board.switchGenerator().generateBoard());
 	}
 	
 	public void testMovePiece() throws Exception {
 		board.initialize();
 		Position source = new Position("a2");
-		Piece sourcePiece = board.findPiece(source);
-		assertEquals(new Pawn(Color.WHITE, source), sourcePiece);
+		PieceOperations sourcePiece = board.findPiece(source);
+		assertEquals(new Pawn(PieceColor.WHITE, source), sourcePiece);
 		
 		Position target = new Position("a3");
 		board.movePiece(source, target);
-		assertEquals(new Empty(Color.NOCOLOR, source), board.findPiece(source));
-		assertEquals(new Pawn(Color.WHITE, target), board.findPiece(target));
-		System.out.println(board.generateBoard());
+		assertEquals(new Empty(PieceColor.NOCOLOR, source), board.findPiece(source));
+		assertEquals(new Pawn(PieceColor.WHITE, target), board.findPiece(target));
+		System.out.println(board.switchGenerator().generateBoard());
 	}
 	
 	public void testSelectEmptyPlaceToMove() throws Exception {
@@ -90,7 +90,7 @@ public class BoardTest extends TestCase {
 			System.out.println("ERROR:"+e);
 		}
 		
-		System.out.println(board.generateBoard());
+		System.out.println(board.switchGenerator().generateBoard());
 	}
 	
 	
@@ -106,7 +106,7 @@ public class BoardTest extends TestCase {
 			System.out.println("ERROR:"+e);
 		}
 		
-		System.out.println(board.generateBoard());
+		System.out.println(board.switchGenerator().generateBoard());
 	}
 	
 	
@@ -122,6 +122,6 @@ public class BoardTest extends TestCase {
 			System.out.println("ERROR:"+e);
 		}
 		
-		System.out.println(board.generateBoard());
+		System.out.println(board.switchGenerator().generateBoard());
 	}
 }

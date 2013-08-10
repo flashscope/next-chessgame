@@ -5,8 +5,8 @@ import java.util.List;
 
 
 public class Pawn extends Piece {
-	public Pawn(Color color, Position position) {
-		super(color, Type.PAWN, position);
+	public Pawn(PieceColor color, Position position) {
+		super(color, PieceType.PAWN, position);
 	}
 
 	@Override
@@ -14,7 +14,7 @@ public class Pawn extends Piece {
 		List<Position> list = new ArrayList<Position>();
 		Position position = super.getSuperPiecePosition();
 		
-		if (super.getSuperPieceColor() == Color.BLACK) {
+		if (super.getSuperPieceColor() == PieceColor.BLACK) {
 			list.addAll(position.findsPositionOneMove(Direction.SOUTH));
 			if (position.getY() == 6) {
 				list.addAll(list.get(0).findsPositionOneMove(Direction.SOUTH));

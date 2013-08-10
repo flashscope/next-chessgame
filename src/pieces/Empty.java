@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Empty extends Piece {
-	public Empty(Color color, Position position) {
-		super(color, Type.EMPTY, position);
+	public Empty(PieceColor color, Position position) {
+		super(color, PieceType.EMPTY, position);
 	}
 
 	@Override

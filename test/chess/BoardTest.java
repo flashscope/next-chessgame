@@ -10,16 +10,18 @@ import util.exceptions.EmptyPositionException;
 
 public class BoardTest extends TestCase {
 	private Board board;
+	BoardGenerator boardGenerator;
 	
 	@Override
 	protected void setUp() throws Exception {
 		board = new Board();
+		boardGenerator = board.switchGenerator();
 	}
 	
 	public void testCreate() throws Exception {
 		board.initialize();
-		assertEquals(RankTest.WHITE_PAWN_RANK, board.switchGenerator().generateRank(1));
-		assertEquals(RankTest.BLACK_PAWN_RANK, board.switchGenerator().generateRank(6));
+		assertEquals(RankTest.WHITE_PAWN_RANK, boardGenerator.generateRank(1));
+		assertEquals(RankTest.BLACK_PAWN_RANK, boardGenerator.generateRank(6));
 	}
 	
 	public void testPrint() throws Exception {
@@ -33,8 +35,8 @@ public class BoardTest extends TestCase {
 			createEmptyRank() +
 			RankTest.WHITE_PAWN_RANK + Board.NEW_LINE +
 			RankTest.WHITE_EXCEPT_PAWN_RANK + Board.NEW_LINE;
-		assertEquals(expected, board.switchGenerator().generateBoard());
-		System.out.println(board.switchGenerator().generateBoard());
+		assertEquals(expected, boardGenerator.generateBoard());
+		boardGenerator.printMessage(boardGenerator.generateBoard());
 	}
 	
 	private String createEmptyRank() {
@@ -49,7 +51,7 @@ public class BoardTest extends TestCase {
 	
 	public void testInitializeEmpty() throws Exception {
 		board.initializeEmpty();
-		System.out.println(board.switchGenerator().generateBoard());
+		boardGenerator.printMessage(boardGenerator.generateBoard());
 	}
 	
 	public void testMovePiece() throws Exception {
@@ -62,7 +64,7 @@ public class BoardTest extends TestCase {
 		board.movePiece(source, target);
 		assertEquals(new Empty(PieceColor.NOCOLOR, source), board.findPiece(source));
 		assertEquals(new Pawn(PieceColor.WHITE, target), board.findPiece(target));
-		System.out.println(board.switchGenerator().generateBoard());
+		boardGenerator.printMessage(boardGenerator.generateBoard());
 	}
 	
 	public void testSelectEmptyPlaceToMove() throws Exception {
@@ -74,7 +76,7 @@ public class BoardTest extends TestCase {
 			board.movePiece(source, target);
 			fail("만약 빈칸을 건드리지 '않으면' 이게 실행되겠지...");
 		}catch(EmptyPositionException e){
-			System.out.println("ERROR:"+e);
+			boardGenerator.printMessage("ERROR:"+e);
 		}
 	}
 	
@@ -87,10 +89,10 @@ public class BoardTest extends TestCase {
 			board.movePiece(source, target);
 			fail("만약 타겟이 잘못된 곳으로 이끌지 '않으면' 이게 실행되겠지...");
 		}catch(Exception e){
-			System.out.println("ERROR:"+e);
+			boardGenerator.printMessage("ERROR:"+e);
 		}
 		
-		System.out.println(board.switchGenerator().generateBoard());
+		boardGenerator.printMessage(boardGenerator.generateBoard());
 	}
 	
 	
@@ -103,10 +105,10 @@ public class BoardTest extends TestCase {
 			board.movePiece(source, target);
 			fail("만약 타겟에 같은 팀이 있지 '않으면' 이게 실행되겠지...");
 		}catch(Exception e){
-			System.out.println("ERROR:"+e);
+			boardGenerator.printMessage("ERROR:"+e);
 		}
 		
-		System.out.println(board.switchGenerator().generateBoard());
+		boardGenerator.printMessage(boardGenerator.generateBoard());
 	}
 	
 	
@@ -119,9 +121,9 @@ public class BoardTest extends TestCase {
 			board.movePiece(source, target);
 			fail("그 말이 갈 수 있는 곳이지 '않으면' 이게 실행되겠지...");
 		}catch(Exception e){
-			System.out.println("ERROR:"+e);
+			boardGenerator.printMessage("ERROR:"+e);
 		}
 		
-		System.out.println(board.switchGenerator().generateBoard());
+		boardGenerator.printMessage(boardGenerator.generateBoard());
 	}
 }

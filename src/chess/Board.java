@@ -12,9 +12,7 @@ import util.exceptions.SameColorPositionException;
 
 public class Board {
 	
-	
 	private static final boolean SYSOUT_ON = true;
-	
 	
 	
 	public static final String NEW_LINE = System.getProperty("line.separator");
@@ -97,10 +95,9 @@ public class Board {
 	}
 	
 	public BoardGenerator switchGenerator(){
-		return null;
-		//if(SYSOUT_ON){
-		//	return new BoardGenerateSysOut();
-		//}
-		//return new BoardGenerateHtml();
+		if(SYSOUT_ON){
+			return new BoardGenerateSysOut();
+		}
+		return new BoardGenerateHtml();
 	}
 }

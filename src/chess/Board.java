@@ -8,12 +8,13 @@ import pieces.Position;
 import util.exceptions.CanNotMovePositionException;
 import util.exceptions.EmptyPositionException;
 import util.exceptions.IllegalPositionException;
+import util.exceptions.KillKingException;
 import util.exceptions.SameColorPositionException;
 
 public class Board {
 	
 	private static final boolean SYSOUT_ON = true;
-	
+	private static final boolean BOARD_EMPTY_MODE_ON = false;
 	
 	public static final String NEW_LINE = System.getProperty("line.separator");
 	public static final int ROW_SIZE = 8;
@@ -26,20 +27,24 @@ public class Board {
 	}
 
 	void initialize() {
-		for (int i = 0; i < ROW_SIZE; i++) {
-			Rank rank = new Rank(i);
-			if (i==0) {
-				rank.initializeWhiteExceptPawn();
-			} else if (i==1) {
-				rank.initializeWhitePawn();
-			} else if (i==6) {	
-				rank.initializeBlackPawn();
-			} else if (i==7) {
-				rank.initializeBlackExceptPawn();
-			} else {
-				rank.initializeEmpty();
+		if(BOARD_EMPTY_MODE_ON) {
+			for (int i = 0; i < ROW_SIZE; i++) {
+				Rank rank = new Rank(i);
+				if (i==0) {
+					rank.initializeWhiteExceptPawn();
+				} else if (i==1) {
+					rank.initializeWhitePawn();
+				} else if (i==6) {	
+					rank.initializeBlackPawn();
+				} else if (i==7) {
+					rank.initializeBlackExceptPawn();
+				} else {
+					rank.initializeEmpty();
+				}
+				ranks.add(rank);
 			}
-			ranks.add(rank);
+		}else{
+			initializeEmpty();
 		}
 	}
 	
@@ -79,6 +84,9 @@ public class Board {
 		}
 		if (!targetPiece.isCanMove(target)){
 			throw new CanNotMovePositionException("그 말이 이동 할 수 없는 곳입니다.");
+		}
+		if (targetPiece.getSymbol()=='k' || targetPiece.getSymbol()=='K'){
+			throw new KillKingException("킹은 잡을 수 없습니다.");
 		}
 		
 		PieceOperations sourcePiece = targetPiece.leave();

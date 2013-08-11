@@ -3,14 +3,14 @@ package pieces;
 
 public interface PieceOperations {
 
-	public char getSymbol();
-	public PieceColor getColor();
+	char getSymbol();
+	PieceColor getColor();
 	
     boolean isWhite();
     boolean isBlack();
 
-	public Piece leave();
-	public Piece move(Position target);
+	Piece leave();
+	Piece move(Position target);
 	
-	public boolean isCanMove (Position pos);
+	boolean isCanMove (Position pos);
 }

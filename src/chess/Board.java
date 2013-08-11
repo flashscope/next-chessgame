@@ -11,10 +11,14 @@ import util.exceptions.IllegalPositionException;
 import util.exceptions.KillKingException;
 import util.exceptions.SameColorPositionException;
 
+/**
+ * @author flashscope
+ *보드 클래스 게임 컨트롤의 중심이 되는 클래스 
+ */
 public class Board {
 	
 	private static final boolean SYSOUT_ON = true;
-	private static final boolean BOARD_EMPTY_MODE_ON = false;
+	private static final boolean BOARD_EMPTY_MODE_OFF = true;
 	
 	public static final String NEW_LINE = System.getProperty("line.separator");
 	public static final int ROW_SIZE = 8;
@@ -26,8 +30,12 @@ public class Board {
 	Board() {
 	}
 
+	/**
+	 * 체스판을 초기화 한다. 디버깅 모드로 BOARD_EMPTY_MODE_OFF가 false가 되면
+	 * 체스판이 비어있는 상태로 초기화 하고 아니면 모든 말이 기본위치에 있는 상태로 초기화 한다.
+	 */
 	void initialize() {
-		if(BOARD_EMPTY_MODE_ON) {
+		if(BOARD_EMPTY_MODE_OFF) {
 			for (int i = 0; i < ROW_SIZE; i++) {
 				Rank rank = new Rank(i);
 				if (i==0) {
